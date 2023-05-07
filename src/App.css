@@ -1,0 +1,13 @@
+header {
+  display: flex;
+  margin-bottom: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.text {
+  color: lightcoral;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
