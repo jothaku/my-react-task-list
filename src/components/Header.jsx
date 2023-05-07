@@ -1,7 +1,7 @@
 function Header() {
   return (
     <header>
-      <h1>My React Task List</h1>
+      <h1 className="text">My React Task List</h1>
     </header>
   );
 }

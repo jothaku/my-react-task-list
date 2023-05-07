@@ -30,6 +30,9 @@ function TaskList() {
     }
   });
 
+  const [newTaskName, setNewTaskName] = useState("");
+  const [editingTask, setEditingTask] = useState(null);
+
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -49,15 +52,62 @@ function TaskList() {
     setTasks(tasks.filter((task) => task.id !== id));
   }
 
+  function handleTaskAdd() {
+    const newTask = {
+      id: tasks.length + 1,
+      name: newTaskName,
+      description: "Descripción de la nueva tarea",
+      completed: false,
+    };
+    setTasks([...tasks, newTask]);
+    setNewTaskName("");
+  }
+
+  function handleTaskEdit(id) {
+    const editedTask = tasks.find((task) => task.id === id);
+    editedTask.name = prompt("Editar nombre de la tarea:", editedTask.name);
+    editedTask.description = prompt(
+      "Editar descripción de la tarea:",
+      editedTask.description
+    );
+    setTasks(tasks.map((task) => (task.id === id ? editedTask : task)));
+    setEditingTask(null);
+  }
+
   return (
     <div>
+      <input
+        type="text"
+        value={newTaskName}
+        onChange={(e) => setNewTaskName(e.target.value)}
+        placeholder="Nombre de la tarea"
+      />
+      <button onClick={handleTaskAdd}>Agregar tarea</button>
       {tasks.map((task) => (
-        <Task
-          key={task.id}
-          task={task}
-          handleTaskToggle={handleTaskToggle}
-          handleTaskDelete={handleTaskDelete}
-        />
+        <div key={task.id}>
+          <Task
+            task={task}
+            handleTaskToggle={handleTaskToggle}
+            handleTaskDelete={handleTaskDelete}
+          />
+          <button onClick={() => setEditingTask(task.id)}>Editar</button>
+          {editingTask === task.id && (
+            <div>
+              <input
+                type="text"
+                value={task.name}
+                onChange={(e) =>
+                  setTasks(
+                    tasks.map((t) =>
+                      t.id === task.id ? { ...t, name: e.target.value } : t
+                    )
+                  )
+                }
+              />
+              <button onClick={() => handleTaskEdit(task.id)}>Guardar</button>
+            </div>
+          )}
+        </div>
       ))}
     </div>
   );
