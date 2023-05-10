@@ -53,14 +53,18 @@ function TaskList() {
   }
 
   function handleTaskAdd() {
-    const newTask = {
-      id: tasks.length + 1,
-      name: newTaskName,
-      description: "Descripción de la nueva tarea",
-      completed: false,
-    };
-    setTasks([...tasks, newTask]);
-    setNewTaskName("");
+    if (newTaskName.length < 3) {
+      alert("El nombre de la tarea debe tener al menos 3 caracteres.");
+    } else {
+      const newTask = {
+        id: tasks.length + 1,
+        name: newTaskName,
+        description: "",
+        completed: false,
+      };
+      setTasks([...tasks, newTask]);
+      setNewTaskName("");
+    }
   }
 
   function handleTaskEdit(id) {
