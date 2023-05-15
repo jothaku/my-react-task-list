@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import { Button } from "@chakra-ui/react";
 
 function Task({ task, handleTaskAction }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(task.name);
   const [editedDescription, setEditedDescription] = useState(task.description);
+  const [isCompleted, setIsCompleted] = useState(task.completed);
 
   function handleToggle() {
+    setIsCompleted(!isCompleted);
     handleTaskAction("toggle", task.id);
   }
 
@@ -34,7 +37,7 @@ function Task({ task, handleTaskAction }) {
   }
 
   return (
-    <div>
+    <div className="task">
       {isEditing ? (
         <div>
           <label htmlFor="edited-name">Name:</label>
@@ -43,6 +46,7 @@ function Task({ task, handleTaskAction }) {
             id="edited-name"
             value={editedName}
             onChange={(e) => setEditedName(e.target.value)}
+            className="task-input"
           />
           <br />
           <label htmlFor="edited-description">Description:</label>
@@ -50,20 +54,31 @@ function Task({ task, handleTaskAction }) {
             id="edited-description"
             value={editedDescription}
             onChange={(e) => setEditedDescription(e.target.value)}
+            className="task-textarea"
           ></textarea>
           <br />
-          <button onClick={handleSave}>Save</button>
-          <button onClick={handleCancel}>Cancel</button>
+          <Button colorScheme="blue" onClick={handleSave} mr={2}>
+            Guardar
+          </Button>
+          <Button colorScheme="blue" onClick={handleCancel}>
+            Cancelar
+          </Button>
         </div>
       ) : (
         <div>
           <h3>{task.name}</h3>
           <p>{task.description}</p>
-          <button onClick={handleToggle}>
-            {task.completed ? "Mark Incomplete" : "Mark Complete"}
-          </button>
-          <button onClick={handleDelete}>Delete</button>
-          <button onClick={handleEdit}>Edit</button>
+          <input
+            type="checkbox"
+            checked={isCompleted}
+            onChange={handleToggle}
+          />
+          <Button colorScheme="red" onClick={handleDelete} mr={2}>
+            Eliminar
+          </Button>
+          <Button colorScheme="green" onClick={handleEdit}>
+            Editar
+          </Button>
         </div>
       )}
     </div>

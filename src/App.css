@@ -1,13 +1,40 @@
-header {
-  display: flex;
-  margin-bottom: 10px;
-  background-color: #f5f5f5;
-  border-radius: 5px;
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
 }
 
-.text {
-  color: lightcoral;
-  text-align: center;
+.centered-container {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+}
+
+task-input {
+  width: 100px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+.task-textarea {
+  width: 200px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+h1 {
+  color: #ff0066; /* Color de texto bonito, puedes cambiarlo a tu preferencia */
+  background-color: #ffffff; /* Fondo blanco */
+  padding: 10px; /* Espacio interno para el título */
+}
+
+p {
+  width: 100%; /* Ancho del párrafo */
+  max-width: 700px; /* Ancho máximo del párrafo */
+  margin: 0 auto; /* Margen automático para centrar horizontalmente */
 }

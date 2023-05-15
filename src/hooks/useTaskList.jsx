@@ -1,19 +1,22 @@
-// useTaskList.js
 import { useState, useEffect } from "react";
 
 function useTaskList() {
   const [tasks, setTasks] = useState([]);
-  const [newTaskName, setNewTaskName] = useState("");
-  const [newTaskDescription, setNewTaskDescription] = useState("");
-  const [editingTask, setEditingTask] = useState(null);
 
   useEffect(() => {
-    const storedTasks = JSON.parse(localStorage.getItem("tasks"));
-    if (storedTasks) {
-      setTasks(storedTasks);
+    const storedTasks = localStorage.getItem("tasks");
+    let parsedTasks;
+    try {
+      parsedTasks = JSON.parse(storedTasks);
+    } catch (error) {
+      parsedTasks = null;
+      console.error("Error al analizar la cadena JSON de las tareas:", error);
+    }
+
+    if (parsedTasks) {
+      setTasks(parsedTasks);
     }
   }, []);
-
   function addTask(name, description) {
     const newTask = {
       id: Date.now(),
