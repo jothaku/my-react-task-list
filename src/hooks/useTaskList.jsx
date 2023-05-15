@@ -45,7 +45,8 @@ function useTaskList() {
   }
 
   function deleteTask(id) {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+    if (confirm("¿Estás seguro de que deseas eliminar esta tarea?"))
+      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
     localStorage.setItem(
       "tasks",
       JSON.stringify(tasks.filter((task) => task.id !== id))

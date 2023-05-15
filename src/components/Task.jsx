@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Button } from "@chakra-ui/react";
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Textarea,
+  Flex,
+  Checkbox,
+} from "@chakra-ui/react";
 
 function Task({ task, handleTaskAction }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -37,51 +45,57 @@ function Task({ task, handleTaskAction }) {
   }
 
   return (
-    <div className="task">
+    <Flex direction="column" p={4} borderWidth={1} borderRadius="md">
       {isEditing ? (
         <div>
-          <label htmlFor="edited-name">Name:</label>
-          <input
-            type="text"
-            id="edited-name"
-            value={editedName}
-            onChange={(e) => setEditedName(e.target.value)}
-            className="task-input"
-          />
-          <br />
-          <label htmlFor="edited-description">Description:</label>
-          <textarea
-            id="edited-description"
-            value={editedDescription}
-            onChange={(e) => setEditedDescription(e.target.value)}
-            className="task-textarea"
-          ></textarea>
-          <br />
-          <Button colorScheme="blue" onClick={handleSave} mr={2}>
-            Guardar
-          </Button>
-          <Button colorScheme="blue" onClick={handleCancel}>
-            Cancelar
-          </Button>
+          <FormControl>
+            <FormLabel htmlFor="edited-name">Nombre:</FormLabel>
+            <Input
+              type="text"
+              id="edited-name"
+              value={editedName}
+              onChange={(e) => setEditedName(e.target.value)}
+              mb={2}
+            />
+          </FormControl>
+          <FormControl>
+            <FormLabel htmlFor="edited-description">Descripción:</FormLabel>
+            <Textarea
+              id="edited-description"
+              value={editedDescription}
+              onChange={(e) => setEditedDescription(e.target.value)}
+              mb={2}
+            />
+          </FormControl>
+          <div>
+            <Button colorScheme="blue" onClick={handleSave} mr={2}>
+              Guardar
+            </Button>
+            <Button colorScheme="blue" onClick={handleCancel}>
+              Cancelar
+            </Button>
+          </div>
         </div>
       ) : (
-        <div>
-          <h3>{task.name}</h3>
+        <>
+          <Flex align="center" justify="space-between" mb={2}>
+            <h3>{task.name}</h3>
+            <Checkbox isChecked={isCompleted} onChange={handleToggle}>
+              Completada
+            </Checkbox>
+          </Flex>
           <p>{task.description}</p>
-          <input
-            type="checkbox"
-            checked={isCompleted}
-            onChange={handleToggle}
-          />
-          <Button colorScheme="red" onClick={handleDelete} mr={2}>
-            Eliminar
-          </Button>
-          <Button colorScheme="green" onClick={handleEdit}>
-            Editar
-          </Button>
-        </div>
+          <div>
+            <Button colorScheme="green" onClick={handleEdit}>
+              Editar
+            </Button>
+            <Button colorScheme="red" onClick={handleDelete} mr={2}>
+              Eliminar
+            </Button>
+          </div>
+        </>
       )}
-    </div>
+    </Flex>
   );
 }
 

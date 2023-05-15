@@ -8,6 +8,7 @@ import {
   Input,
   Textarea,
 } from "@chakra-ui/react";
+
 function TaskList() {
   const { tasks, addTask, toggleTask, deleteTask, editTask } = useTaskList();
   const [newTaskName, setNewTaskName] = useState("");
@@ -62,9 +63,11 @@ function TaskList() {
           />
         </FormControl>
         <br />
-        <Button colorScheme="green" type="submit" className="task-button">
-          Agregar
-        </Button>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Button colorScheme="green" type="submit" className="task-button">
+            Agregar
+          </Button>
+        </div>
       </form>
       {tasks.map((task) => (
         <div key={task.id}>
