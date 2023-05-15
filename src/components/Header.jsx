@@ -1,8 +1,17 @@
+import { Heading } from "@chakra-ui/react";
+
 function Header() {
   return (
-    <header>
-      <h1 className="text">My React Task List</h1>
-    </header>
+    <Heading
+      as="h1"
+      size="xl"
+      textAlign="center"
+      mt={8}
+      mb={4}
+      color="blue.400"
+    >
+      Lista de Tareas
+    </Heading>
   );
 }
 
