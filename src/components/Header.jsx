@@ -1,9 +1,7 @@
+import "../App.css";
+
 function Header() {
-  return (
-    <header>
-      <h1 className="text">My React Task List</h1>
-    </header>
-  );
+  return <h1> Mi Lista de Tareas</h1>;
 }
 
 export default Header;
