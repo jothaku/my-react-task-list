@@ -8,6 +8,7 @@ import {
   Flex,
   Checkbox,
 } from "@chakra-ui/react";
+import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 
 function Task({ task, handleTaskAction }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -45,8 +46,42 @@ function Task({ task, handleTaskAction }) {
   }
 
   return (
-    <Flex direction="column" p={4} borderWidth={1} borderRadius="md">
-      {isEditing ? (
+    <Flex
+      justifyContent="center"
+      alignItems="center"
+      direction="column"
+      p={2}
+      borderWidth={3}
+      borderRadius="md"
+      mb={4}
+    >
+      <Flex align="center" justify="space-between" mb={2}>
+        <h3>{task.name}</h3>
+        <Checkbox isChecked={isCompleted} onChange={handleToggle} mb={1} p={2}>
+          Completada
+        </Checkbox>
+      </Flex>
+      <p>{task.description}</p>
+      {!isCompleted && (
+        <Flex align="center" justify="space-between" mt={2}>
+          <Button
+            colorScheme="green"
+            onClick={handleEdit}
+            mr={2}
+            leftIcon={<EditIcon />}
+          >
+            Editar
+          </Button>
+          <Button
+            colorScheme="red"
+            onClick={handleDelete}
+            leftIcon={<DeleteIcon />}
+          >
+            Eliminar
+          </Button>
+        </Flex>
+      )}
+      {isEditing && (
         <div>
           <FormControl>
             <FormLabel htmlFor="edited-name">Nombre:</FormLabel>
@@ -76,24 +111,6 @@ function Task({ task, handleTaskAction }) {
             </Button>
           </div>
         </div>
-      ) : (
-        <>
-          <Flex align="center" justify="space-between" mb={2}>
-            <h3>{task.name}</h3>
-            <Checkbox isChecked={isCompleted} onChange={handleToggle}>
-              Completada
-            </Checkbox>
-          </Flex>
-          <p>{task.description}</p>
-          <div>
-            <Button colorScheme="green" onClick={handleEdit} mr={2}>
-              Editar
-            </Button>
-            <Button colorScheme="red" onClick={handleDelete}>
-              Eliminar
-            </Button>
-          </div>
-        </>
       )}
     </Flex>
   );

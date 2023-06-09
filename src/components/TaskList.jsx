@@ -16,7 +16,7 @@ function TaskList() {
   const [newTaskName, setNewTaskName] = useState("");
   const [newTaskDescription, setNewTaskDescription] = useState("");
   const { colorMode } = useColorMode();
-  console.log(colorMode == "light");
+  console.log(colorMode == "li");
 
   function handleTaskAdd(e) {
     e.preventDefault();
@@ -36,7 +36,7 @@ function TaskList() {
             value={newTaskName}
             onChange={(e) => setNewTaskName(e.target.value)}
             required
-            minLength={3}
+            minLength={2}
             size="sm"
             variant="filled"
             _focus={{
@@ -68,7 +68,9 @@ function TaskList() {
         </FormControl>
         <br />
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Button type="submit">Agregar</Button>
+          <Button type="submit" mb={4}>
+            Agregar
+          </Button>
         </div>
       </form>
       {tasks.map((task) => (
