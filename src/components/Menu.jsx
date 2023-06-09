@@ -4,21 +4,21 @@ import { Flex, Box, Text } from "@chakra-ui/react";
 export function Menu() {
   return (
     <Flex as="nav" align="center" justify="center" py={4} color="blue.600">
-      <Box mx={2}>
+      <Box mx={2} _hover={{ color: "blue.800" }}>
         <Link to="/">
           <Text as="span" fontWeight="bold" fontSize="lg">
             Home
           </Text>
         </Link>
       </Box>
-      <Box mx={2}>
+      <Box mx={2} _hover={{ color: "blue.800" }}>
         <Link to="/sobre-nosotros">
           <Text as="span" fontWeight="bold" fontSize="lg">
             Sobre Nosotros
           </Text>
         </Link>
       </Box>
-      <Box mx={2}>
+      <Box mx={2} _hover={{ color: "blue.800" }}>
         <Link to="/tasks">
           <Text as="span" fontWeight="bold" fontSize="lg">
             Tareas

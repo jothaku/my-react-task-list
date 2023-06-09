@@ -86,10 +86,10 @@ function Task({ task, handleTaskAction }) {
           </Flex>
           <p>{task.description}</p>
           <div>
-            <Button colorScheme="green" onClick={handleEdit}>
+            <Button colorScheme="green" onClick={handleEdit} mr={2}>
               Editar
             </Button>
-            <Button colorScheme="red" onClick={handleDelete} mr={2}>
+            <Button colorScheme="red" onClick={handleDelete}>
               Eliminar
             </Button>
           </div>

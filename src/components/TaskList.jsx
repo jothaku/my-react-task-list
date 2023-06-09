@@ -7,12 +7,16 @@ import {
   FormLabel,
   Input,
   Textarea,
+  useColorMode,
 } from "@chakra-ui/react";
+import "../App.css";
 
 function TaskList() {
   const { tasks, addTask, toggleTask, deleteTask, editTask } = useTaskList();
   const [newTaskName, setNewTaskName] = useState("");
   const [newTaskDescription, setNewTaskDescription] = useState("");
+  const { colorMode } = useColorMode();
+  console.log(colorMode == "light");
 
   function handleTaskAdd(e) {
     e.preventDefault();
@@ -64,9 +68,7 @@ function TaskList() {
         </FormControl>
         <br />
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Button colorScheme="green" type="submit" className="task-button">
-            Agregar
-          </Button>
+          <Button type="submit">Agregar</Button>
         </div>
       </form>
       {tasks.map((task) => (
