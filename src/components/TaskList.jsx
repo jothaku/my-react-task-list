@@ -16,7 +16,6 @@ function TaskList() {
   const [newTaskName, setNewTaskName] = useState("");
   const [newTaskDescription, setNewTaskDescription] = useState("");
   const { colorMode } = useColorMode();
-  console.log(colorMode == "li");
 
   function handleTaskAdd(e) {
     e.preventDefault();
