@@ -1,13 +1,36 @@
-header {
-  display: flex;
-  margin-bottom: 10px;
-  background-color: #f5f5f5;
-  border-radius: 5px;
+/* button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+} */
+
+.button-light {
+  background: red;
 }
 
-.text {
-  color: lightcoral;
-  text-align: center;
+.button-dark {
+  background: yellow;
+}
+
+.centered-container {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+}
+
+.task-textarea {
+  width: 200px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+p {
+  width: 100%; /* Ancho del párrafo */
+  max-width: 700px; /* Ancho máximo del párrafo */
+  margin: 0 auto; /* Margen automático para centrar horizontalmente */
 }
