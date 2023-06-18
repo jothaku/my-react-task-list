@@ -4,7 +4,9 @@ import useTaskList from "./useTaskList";
 
 function TaskList() {
   const { tasks, createTask, deleteTask, updateTask } = useTaskList([]);
-
+  const handleTaskEdit = (id, updatedTask) => {
+    updateTask(id, updatedTask);
+  };
   const [newTaskName, setNewTaskName] = useState("");
   const [newTaskDescription, setNewTaskDescription] = useState("");
 
@@ -61,6 +63,7 @@ function TaskList() {
           task={task}
           handleTaskToggle={handleTaskToggle}
           handleTaskDelete={handleTaskDelete}
+          handleTaskEdit={handleTaskEdit}
         />
       ))}
     </div>
